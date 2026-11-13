@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Solidarité et Espoir Mali (SEM) : un projet de solidarité et d'entraide au service des communautés au Mali.">
+  <title>Solidarité &amp; Espoir Mali | SEM</title>
+  <link rel="icon" type="image/svg+xml" href="logo-sem.svg">
+  <style>
+    :root {
+      --green: #176b4b; --green-dark: #104d38; --gold: #e8b84b;
+      --ink: #1d2b25; --muted: #64736b; --cream: #f7f8f4; --white: #fff;
+      --line: #e4eae5; --shadow: 0 16px 45px rgba(18,55,39,.10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; background: #fff; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: auto; }
+    .topbar { background: var(--green-dark); color: #eaf5ee; font-size: .88rem; padding: 9px 0; }
+    .topbar .container { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    header { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; line-height: 1.12; }
+    .brand-mark { width: 58px; height: 58px; display: block; flex: 0 0 58px; border-radius: 50%; box-shadow: 0 7px 18px rgba(23,107,75,.18); }
+    .brand-mark img { width: 100%; height: 100%; display: block; }
+    .brand small { display: block; color: var(--muted); font-size: .68rem; letter-spacing: .14em; margin-top: 5px; }
+    .navlinks { display: flex; align-items: center; gap: 25px; font-size: .94rem; font-weight: 600; color: #43534a; }
+    .navlinks a:hover { color: var(--green); }
+    .menu-btn { display: none; border: 1px solid var(--line); background: white; border-radius: 10px; padding: 9px 12px; font-size: 1.1rem; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 20px; border-radius: 999px; background: var(--green); color: white; font-weight: 750; border: 0; cursor: pointer; transition: .2s; }
+    .btn:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .btn.light { background: white; color: var(--green-dark); }
+    .btn.outline { background: transparent; border: 1px solid rgba(255,255,255,.65); color: white; }
+    .hero { position: relative; overflow: hidden; color: white; background: linear-gradient(110deg, rgba(10,54,39,.94), rgba(17,91,62,.79)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1900&q=85') center/cover; }
+    .hero:after { content: ""; position: absolute; width: 440px; height: 440px; border: 1px solid rgba(255,255,255,.15); border-radius: 50%; right: -100px; bottom: -250px; box-shadow: 0 0 0 55px rgba(255,255,255,.04), 0 0 0 110px rgba(255,255,255,.03); }
+    .hero-inner { min-height: 570px; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 50px; padding-top: 70px; padding-bottom: 70px; position: relative; z-index: 1; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #f6d889; text-transform: uppercase; font-size: .76rem; font-weight: 800; letter-spacing: .16em; }
+    .eyebrow:before { content: ""; width: 27px; height: 2px; background: var(--gold); }
+    h1 { font-size: clamp(2.6rem, 5vw, 4.65rem); line-height: 1.04; letter-spacing: -.055em; margin: 18px 0; max-width: 720px; }
+    .hero p { color: #e0eee6; max-width: 580px; font-size: 1.12rem; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+    .hero-note { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); padding: 25px; border-radius: 24px; backdrop-filter: blur(8px); max-width: 390px; justify-self: end; }
+    .hero-note .symbol { font-size: 2.4rem; }
+    .hero-note h3 { font-size: 1.35rem; margin: 8px 0; }
+    .hero-note p { font-size: .96rem; margin-bottom: 0; }
+    section { padding: 86px 0; }
+    .section-head { max-width: 690px; margin-bottom: 38px; }
+    .kicker { color: var(--green); text-transform: uppercase; letter-spacing: .15em; font-size: .75rem; font-weight: 850; }
+    h2 { font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.12; letter-spacing: -.04em; margin: 10px 0 14px; }
+    .lead { color: var(--muted); font-size: 1.08rem; }
+    .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: center; }
+    .photo-card { min-height: 390px; border-radius: 25px; background: url('https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=1100&q=85') center/cover; box-shadow: var(--shadow); position: relative; }
+    .photo-card:after { content: "La solidarité commence par un geste"; position: absolute; left: 20px; bottom: 20px; right: 20px; padding: 17px; color: white; font-weight: 750; border-radius: 14px; background: rgba(16,77,56,.86); }
+    .values { display: grid; grid-template-columns: repeat(2,1fr); gap: 15px; margin-top: 25px; }
+    .value { border: 1px solid var(--line); border-radius: 16px; padding: 16px; }
+    .value b { display: block; margin-bottom: 4px; }
+    .value span { color: var(--muted); font-size: .9rem; }
+    .soft { background: var(--cream); }
+    .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .card { background: white; border: 1px solid var(--line); border-radius: 20px; padding: 25px; box-shadow: 0 8px 24px rgba(18,55,39,.04); }
+    .card .icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px; background: #eaf4ee; font-size: 1.45rem; margin-bottom: 18px; }
+    .card h3 { margin: 0 0 8px; font-size: 1.18rem; }
+    .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+    .project-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .project { overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: white; }
+    .project-img { height: 190px; background-size: cover; background-position: center; }
+    .project-body { padding: 20px; }
+    .tag { display: inline-block; color: var(--green); background: #eaf4ee; padding: 5px 10px; border-radius: 99px; font-size: .73rem; font-weight: 800; }
+    .project h3 { margin: 11px 0 6px; }
+    .project p { margin: 0; color: var(--muted); font-size: .92rem; }
+    .notice { border-left: 4px solid var(--gold); padding: 13px 16px; background: #fff9e9; border-radius: 0 12px 12px 0; color: #6a5728; font-size: .9rem; margin-top: 22px; }
+    .join { background: linear-gradient(120deg, var(--green-dark), var(--green)); color: white; }
+    .join-grid { display: grid; grid-template-columns: 1fr auto; gap: 35px; align-items: center; }
+    .join p { color: #d8e9df; max-width: 680px; }
+    .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 55px; }
+    .contact-item { display: flex; gap: 13px; margin: 22px 0; }
+    .contact-item .icon { font-size: 1.25rem; }
+    form { display: grid; gap: 13px; }
+    input, textarea { width: 100%; padding: 14px 15px; border: 1px solid #dbe4dd; border-radius: 12px; font: inherit; background: #fff; }
+    input:focus, textarea:focus { outline: 2px solid #b7d8c5; border-color: var(--green); }
+    textarea { min-height: 130px; resize: vertical; }
+    footer { background: #102e23; color: #d9e8df; padding: 36px 0; }
+    .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 25px; flex-wrap: wrap; }
+    footer small { color: #a9c1b3; }
+    .footer-links { display: flex; gap: 18px; flex-wrap: wrap; font-size: .9rem; }
+    @media (max-width: 820px) {
+      .navlinks { display: none; position: absolute; top: 78px; left: 0; right: 0; padding: 18px 22px 24px; background: white; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; gap: 16px; }
+      .navlinks.open { display: flex; } .menu-btn { display: block; }
+      .hero-inner, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero-inner { min-height: auto; gap: 35px; } .hero-note { justify-self: start; }
+      .cards, .project-grid { grid-template-columns: repeat(2,1fr); }
+      .join-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .container { width: min(100% - 30px, 1120px); }
+      section { padding: 65px 0; }
+      .cards, .project-grid, .values { grid-template-columns: 1fr; }
+      .hero-inner { padding-top: 58px; padding-bottom: 58px; }
+      .photo-card { min-height: 290px; }
+      .topbar .container { justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="container"><span>🤝 Solidarité • Dignité • Espoir</span><span>Un projet au service des communautés au Mali</span></div></div>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#accueil" aria-label="Accueil SEM">
+        <span class="brand-mark"><img src="logo-sem.svg" alt="Logo Solidarité et Espoir Mali (SEM)"></span>
+        <span>Solidarité &amp; Espoir Mali<small>ENSEMBLE, AGIR POUR DEMAIN</small></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+      <nav class="navlinks" id="navlinks">
+        <a href="#accueil">Accueil</a><a href="#apropos">À propos</a><a href="#missions">Nos missions</a><a href="#projets">Projets</a><a href="#contact">Contact</a>
+        <a class="btn" href="#contact">Nous rejoindre</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="container hero-inner">
+        <div>
+          <span class="eyebrow">Solidarité et action communautaire</span>
+          <h1>Ensemble, faisons grandir <span style="color:#f4d27f">l’espoir.</span></h1>
+          <p>Solidarité &amp; Espoir Mali (SEM) est un projet d’organisation solidaire qui souhaite accompagner les personnes vulnérables et soutenir des initiatives utiles aux communautés.</p>
+          <div class="hero-actions"><a class="btn light" href="#missions">Découvrir nos missions</a><a class="btn outline" href="#contact">Devenir bénévole</a></div>
+        </div>
+        <aside class="hero-note">
+          <div class="symbol">💚</div><h3>Chaque geste compte.</h3>
+          <p>Une communauté plus forte se construit grâce à l'entraide, à l'écoute et à l'engagement de chacun.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="apropos">
+      <div class="container about-grid">
+        <div class="photo-card" role="img" aria-label="Bénévoles engagés dans une action communautaire"></div>
+        <div>
+          <span class="kicker">Qui sommes-nous ?</span>
+          <h2>Une initiative tournée vers l’humain.</h2>
+          <p class="lead">Solidarité &amp; Espoir Mali (SEM) porte une ambition simple : contribuer à une société où chaque personne peut vivre avec dignité et trouver des occasions d’avancer.</p>
+          <p>Notre démarche repose sur l'écoute des besoins locaux, la mobilisation des bonnes volontés et la recherche de partenariats responsables. Les actions seront développées progressivement, selon les moyens disponibles et les besoins identifiés.</p>
+          <div class="values">
+            <div class="value"><b>🤲 Entraide</b><span>Agir avec et pour les communautés.</span></div>
+            <div class="value"><b>🧭 Dignité</b><span>Respecter chaque personne.</span></div>
+            <div class="value"><b>🌱 Engagement</b><span>Construire des solutions durables.</span></div>
+            <div class="value"><b>🔎 Transparence</b><span>Rendre compte des actions et des ressources.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="soft" id="missions">
+      <div class="container">
+        <div class="section-head"><span class="kicker">Nos missions</span><h2>Agir là où la solidarité est nécessaire.</h2><p class="lead">Les axes ci-dessous représentent les objectifs envisagés par SEM. Ils pourront être adaptés aux priorités des communautés et aux capacités de l'organisation.</p></div>
+        <div class="cards">
+          <article class="card"><div class="icon">🥫</div><h3>Aide aux familles</h3><p>Encourager des actions d'entraide et de soutien aux ménages en situation de vulnérabilité.</p></article>
+          <article class="card"><div class="icon">📚</div><h3>Éducation des enfants</h3><p>Promouvoir l'accès à l'apprentissage et soutenir les initiatives éducatives locales.</p></article>
+          <article class="card"><div class="icon">👧🏾</div><h3>Protection des enfants</h3><p>Contribuer à la sensibilisation et à l'accompagnement des enfants vulnérables.</p></article>
+          <article class="card"><div class="icon">👕</div><h3>Dons et solidarité</h3><p>Mobiliser des dons de vêtements, de fournitures et de produits de première nécessité.</p></article>
+          <article class="card"><div class="icon">🧑🏾‍💻</div><h3>Insertion des jeunes</h3><p>Favoriser l'orientation, le renforcement des compétences et les initiatives des jeunes.</p></article>
+          <article class="card"><div class="icon">🌾</div><h3>Développement local</h3><p>Encourager des projets communautaires, notamment dans l'agriculture et les activités génératrices de revenus.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projets">
+      <div class="container">
+        <div class="section-head"><span class="kicker">Nos projets</span><h2>Des idées à transformer en actions.</h2><p class="lead">Voici des pistes de projets que l'organisation souhaite pouvoir développer avec des bénévoles et des partenaires.</p></div>
+        <div class="project-grid">
+          <article class="project"><div class="project-img" style="background-image:url('https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=900&q=80')"></div><div class="project-body"><span class="tag">Solidarité</span><h3>Panier de solidarité</h3><p>Préparer des collectes et organiser une distribution équitable de produits essentiels, selon les ressources disponibles.</p></div></article>
+          <article class="project"><div class="project-img" style="background-image:url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80')"></div><div class="project-body"><span class="tag">Éducation</span><h3>Un avenir par l'école</h3><p>Réunir des fournitures scolaires et mobiliser des soutiens pour encourager la scolarisation.</p></div></article>
+          <article class="project"><div class="project-img" style="background-image:url('https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=900&q=80')"></div><div class="project-body"><span class="tag">Jeunesse</span><h3>Jeunes et initiatives</h3><p>Mettre en relation les jeunes avec des opportunités de formation, de bénévolat et d'engagement local.</p></div></article>
+        </div>
+        <div class="notice"><strong>Information importante :</strong> ces projets sont des objectifs de lancement, pas des actions déjà réalisées. Les résultats, dates et lieux seront publiés ici après confirmation.</div>
+      </div>
+    </section>
+
+    <section class="join">
+      <div class="container join-grid"><div><span class="eyebrow">Rejoignez le mouvement</span><h2>Votre temps, vos idées ou votre soutien peuvent faire la différence.</h2><p>Vous souhaitez devenir bénévole, proposer un partenariat ou contribuer à une initiative ? Contactez l'équipe de SEM pour échanger sur les possibilités de collaboration.</p></div><a class="btn light" href="#contact">Participer à SEM&nbsp; →</a></div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-grid">
+        <div><span class="kicker">Contact</span><h2>Parlons de solidarité.</h2><p class="lead">Pour le bénévolat, les partenariats ou toute question, écrivez-nous.</p>
+          <div class="contact-item"><span class="icon">📍</span><div><b>Zone d'action envisagée</b><br><span style="color:var(--muted)">Mali — siège et zones d'intervention à confirmer</span></div></div>
+          <div class="contact-item"><span class="icon">✉️</span><div><b>Adresse e-mail</b><br><a href="mailto:sem96@gmail.com" style="color:var(--muted)">sem96@gmail.com</a></div></div>
+          <div class="contact-item"><span class="icon">📱</span><div><b>Téléphone / WhatsApp</b><br><a href="https://wa.me/22390760507" target="_blank" rel="noopener" style="color:var(--muted)">+223 90 76 05 07</a></div></div>
+        </div>
+        <form id="contactForm">
+          <input type="text" id="name" placeholder="Votre nom" required>
+          <input type="email" id="email" placeholder="Votre adresse e-mail" required>
+          <input type="text" id="subject" placeholder="Objet de votre message">
+          <textarea id="message" placeholder="Votre message..." required></textarea>
+          <button class="btn" type="submit">Préparer mon message</button>
+          <small style="color:var(--muted)">Ce formulaire ouvre votre application e-mail. Votre application e-mail s’ouvrira avec le message préparé.</small>
+          <p id="formStatus" role="status" style="margin:0;color:var(--green);font-size:.9rem"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-row"><div><b>Solidarité &amp; Espoir Mali (SEM)</b><br><small>Ensemble, agir pour demain.</small></div><div class="footer-links"><a href="#apropos">À propos</a><a href="#missions">Missions</a><a href="#projets">Projets</a><a href="#contact">Contact</a></div><small>© <span id="year"></span> SEM. Tous droits réservés.</small></div></footer>
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navlinks = document.getElementById('navlinks');
+    menuBtn.addEventListener('click', () => {
+      const open = navlinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navlinks.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false');
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const recipient = 'sem96@gmail.com';
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim() || 'Message depuis le site SEM';
+      const message = document.getElementById('message').value.trim();
+      const body = `Nom : ${name}\nE-mail : ${email}\n\n${message}`;
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</body>
+</html>
